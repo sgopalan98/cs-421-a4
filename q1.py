@@ -25,9 +25,8 @@ def get_dependency_parse(input):
     # You'll also likely want to make use of the DependencyGraph's to_conll()
     # method---check out the docs to see which style (3, 4, or 10) to select:
     # https://www.nltk.org/_modules/nltk/parse/dependencygraph.html#DependencyGraph.to_conll
-    parsedInput = dep_parser.raw_parse(input)
-    dependencyTree = parsedInput._next_()
-    output = dependencyTree.to_conll(4)
+    parsedGraph = next(dep_parser.raw_parse(input))
+    output = parsedGraph.to_conll(4)
 
     return output
 
@@ -41,7 +40,10 @@ def get_dependency_parse(input):
 #           NLP	    NNP	2	obj
 #           !	    .	2	punct
 def main():
-    output = get_dependency_parse("I love NLP!")
+    output = get_dependency_parse("Free Britney!")
+    print(output)  # Print the output to the terminal.
+
+    output = get_dependency_parse("Come with vax prof or get shot at no cost before entering")
     print(output)  # Print the output to the terminal.
 
 
